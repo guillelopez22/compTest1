@@ -1,0 +1,52 @@
+x = (10 + 7) * 5
+
+print ( x )
+
+print ( (10 + 7) * 5 )
+
+
+// defining grammar
+
+input -> stmt_list
+
+stmt_list -> stmt_list stmt
+
+stmt -> assign
+      | PRINT expr
+
+assign -> IDENT = expr
+
+expr -> expr + term
+      | term
+
+term -> term * factor
+       | factor
+
+factor -> IDENT
+        | NUMBER
+        | ( expr )
+
+// LL(1)
+
+input -> stmt_list
+
+stmt_list -> stmt_list stmt
+
+stmt -> assign
+        | PRINT expr
+
+assign -> IDENT = expr
+
+expr -> term expr'
+
+expr' -> + term expr'
+	| e
+
+term -> factor term'
+
+term' -> * factor term'
+	| e
+
+factor -> IDENT
+        | NUMBER
+        | ( expr )
